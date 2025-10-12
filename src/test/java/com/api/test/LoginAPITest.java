@@ -4,7 +4,12 @@ import static io.restassured.RestAssured.*;
 
 
 import static org.hamcrest.Matchers.*;
+
+import java.io.IOException;
+
 import org.testng.annotations.Test;
+
+import static com.api.utils.ConfigManager.*;
 
 import api.test.pojo.UserCredentialLogin;
 import io.restassured.http.ContentType;
@@ -14,13 +19,13 @@ public class LoginAPITest {
 	
 	@Test
 	
-	public void loginAPITest() {
+	public void loginAPITest() throws IOException {
 		
 		
 		UserCredentialLogin userCredentialLogin = new UserCredentialLogin("iamfd", "password");
 		
 		given()
-		.baseUri("http://64.227.160.186:9000/v1")
+		.baseUri(getProperty("BASE_URL"))
 		.and()
 		.contentType(ContentType.JSON)
 		.and()
